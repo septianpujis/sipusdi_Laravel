@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\C_buku;
+use App\Http\Controllers\C_pengguna;
+use App\Http\Controllers\C_transaksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,36 +17,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('v_home');
-});
+// Route::get('/', function () {
+//     return view('v_home');
+// });
 
-Route::view('/about','v_about', [
-	'nama'=> 'Septi',
-	'kelas'=>'Laravel'
-]);
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/about/{id}', [HomeController::class, 'about']);
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
 
-Route::get('/buku', function () {
-    return view('buku.v_tampil');
-});
+Route::get('/buku', [C_buku::class, 'index']);
 
-Route::get('/buku/tambah', function () {
-    return view('buku.v_tambah');
-});
+Route::get('/buku/tambah', [C_buku::class, 'tambah']);
 
-Route::get('/buku/sunting', function () {
-    return view('buku.v_sunting');
-});
+Route::get('/buku/sunting/{id}', [C_buku::class, 'sunting']);
 
-Route::get('/buku/detail', function () {
-    return view('buku.v_detail');
-});
+Route::get('/buku/detail/{id}', [C_buku::class, 'detail']);
 
+Route::get('/buku/hapus/{id}', [C_buku::class, 'hapus']);
 
 Route::get('/pengguna', function () {
     return view('pengguna.v_tampil');
