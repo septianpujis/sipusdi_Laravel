@@ -9,6 +9,7 @@
 				<h2>ABOUT PAGE</h2>
 				<h5>Welcome Jhon Deo , Love to see you back. </h5>
 				<h3>{{$link}}</h3>
+				
 			</div>
 		</div><hr />
 	</div>

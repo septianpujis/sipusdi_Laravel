@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{$title}} | SiPusDi</title>
+    <title>{{$title ?? 'Home'}} | SiPusDi</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="{{asset('template')}}/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->

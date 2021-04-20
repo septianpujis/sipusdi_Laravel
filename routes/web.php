@@ -30,11 +30,14 @@ Route::get('/welcome', function () {
 });
 
 
-Route::get('/buku', [C_buku::class, 'index']);
+Route::get('/buku', [C_buku::class, 'index'])->name('buku');
 
 Route::get('/buku/tambah', [C_buku::class, 'tambah']);
 
+Route::post('/buku/form_val/{id?}', [C_buku::class, 'form_val']);
+
 Route::get('/buku/sunting/{id}', [C_buku::class, 'sunting']);
+
 
 Route::get('/buku/detail/{id}', [C_buku::class, 'detail']);
 
