@@ -14,7 +14,7 @@
                 <a class="{{request()->is('user')? 'active-menu' : '' }}" href="/user"><i class="fa fa-qrcode fa-3x"></i> Pengguna</a>
             </li>
                    <li  >
-                <a class="{{request()->is('transaksi')? 'active-menu' : '' }}" href="/transaksi"><i class="fa fa-bar-chart-o fa-3x"></i> Transaksi</a>
+                <a class="{{request()->is('trans')? 'active-menu' : '' }}" href="/trans"><i class="fa fa-bar-chart-o fa-3x"></i> Transaksi</a>
             </li>   
                         
                                
@@ -33,7 +33,7 @@
                 </ul>
               </li>  
             <li >
-                <a class="{{request()->is('/')? 'active-menu' : '' }}" href="blank.html"><i class="fa fa-square-o fa-3x"></i> API</a>
+                <a class="{{request()->is('api')? 'active-menu' : '' }}" href="/"><i class="fa fa-square-o fa-3x"></i> API</a>
             </li>
             <li >
                 <a class="{{request()->is('about')? 'active-menu' : '' }}" href="/about"><i class="fa fa-square-o fa-3x"></i> About</a>

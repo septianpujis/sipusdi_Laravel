@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\C_buku;
 use App\Http\Controllers\C_user;
-use App\Http\Controllers\C_transaksi;
+use App\Http\Controllers\C_trans;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,18 +56,14 @@ Route::get('/user/detail/{id}', [C_user::class, 'detail']);
 Route::get('/user/hapus/{id}', [C_user::class, 'hapus']);
 
 
-Route::get('/transaksi', function () {
-    return view('transaksi.v_tampil');
-});
+Route::get('/trans', [C_trans::class, 'index'])->name('trans');
 
-Route::get('/transaksi/tambah', function () {
-    return view('transaksi.v_tambah');
-});
+Route::get('/trans/tambah', [C_trans::class, 'tambah']);
 
-Route::get('/transaksi/sunting', function () {
-    return view('transaksi.v_sunting');
-});
+Route::post('/trans/form_val/{id?}', [C_trans::class, 'form_val']);
 
-Route::get('/transaksi/detail', function () {
-    return view('transaksi.v_detail');
-});
+Route::get('/trans/sunting/{id}', [C_trans::class, 'sunting']);
+
+Route::get('/trans/detail/{id}', [C_trans::class, 'detail']);
+
+Route::get('/trans/hapus/{id}', [C_trans::class, 'hapus']);
