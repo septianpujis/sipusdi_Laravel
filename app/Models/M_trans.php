@@ -13,12 +13,23 @@ class M_trans extends Model
 
     public function allData()   
     {
-        return DB::table(self::table)->get();
+        return DB::table(self::table)
+               ->join('tb_user', 'tr_transaksi.id_user', '=','tb_user.id_user')
+               ->join('tb_book', 'tr_transaksi.id_buku', '=','tb_book.id_buku')
+               ->join('tb_status_transaksi', 'tr_transaksi.id_status', '=','tb_status_transaksi.id_status')
+               ->select('tr_transaksi.*', 'tb_book.judul', 'tb_user.nama','tb_status_transaksi.nama_status')
+               ->get();
     }
 
     public function detailData($id)
     {
-        return DB::table(self::table)->where(self::primary, $id)->first();
+        return DB::table(self::table)
+               ->join('tb_user', 'tr_transaksi.id_user', '=','tb_user.id_user')
+               ->join('tb_book', 'tr_transaksi.id_buku', '=','tb_book.id_buku')
+               ->join('tb_status_transaksi', 'tr_transaksi.id_status', '=','tb_status_transaksi.id_status')
+               ->select('tr_transaksi.*', 'tb_book.judul', 'tb_user.nama','tb_status_transaksi.nama_status')
+               ->where(self::primary, $id)
+               ->first();
     }
 
     public function tambahData($data)

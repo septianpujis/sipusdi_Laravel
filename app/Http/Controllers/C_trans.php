@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\M_trans;
+use App\Models\M_buku;
+use App\Models\M_user;
 
 class C_trans extends Controller
 {
     public function __construct(){
         $this->M_trans = new M_trans();
+        $this->M_buku = new M_buku();
+        $this->M_user = new M_user();
     }
 
     public function index(){
@@ -22,9 +26,21 @@ class C_trans extends Controller
     public function tambah(){
 
         $data = [
-        'title' => 'Tambah Data Transaksi',
+            'title' => 'Tambah Data Transaksi',
+            'user' => $this->M_user->allData(),
+            'buku' => $this->M_buku->allData(),
         ];
         return view('trans.v_tambah', $data);
+    }
+
+    public function sunting($id){
+        $data = [
+            'title' => 'Sunting Data Transaksi',
+            'trans' => $this->M_trans->detailData($id),
+            'user' => $this->M_user->allData(),
+            'buku' => $this->M_buku->allData(),
+        ];
+        return view('trans.v_sunting', $data);
     }
 
     public function form_val($id = null){
@@ -92,14 +108,6 @@ class C_trans extends Controller
             }
         }
         return redirect()->route('trans')->with('pesan', $pesan);
-    }
-
-    public function sunting($id){
-        $data = [
-            'title' => 'Sunting Data Transaksi',
-            'trans' => $this->M_trans->detailData($id)
-        ];
-        return view('trans.v_sunting', $data);
     }
 
     public function detail($id){

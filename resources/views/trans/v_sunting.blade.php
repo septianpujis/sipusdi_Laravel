@@ -9,26 +9,31 @@
 				<h5>Isi data dengan teliti.</h5>
 				<hr />
 				
-		    <form method="post" action="/">
-        	@csrf
+        <form method="post" action="/trans/tambah">
+          @csrf
           <div class="row">
             <div class="col-sm-8">
               <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Waktu Pinjam</label>
                 <div class="col-sm-9">
-                  <input type="date" name="waktu_pinjam" class="form-control" readonly="" required value="<?php echo date("Y-m-d");?>">
+                  <input type="date" name="waktu_pinjam" class="form-control" readonly="" required value="{{$trans->waktu_pinjam}}">
                 </div>
               </div>
               <div class="line"> </div>
               <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Peminjam</label>
                 <div class="col-sm-9">
-                  <select name="user" class="form-control" {{-- <?php if ($this->session->userdata('level')=='2') echo "disabled"; ?>  --}}>
+                  <select name="user" class="form-control">
                     <option>Pilih Data Pengguna</option>
-                    {{-- <?php foreach($kelas as $row):?> --}}
-                    {{-- <option value="<?php echo $row->id_user;?>" <?php if($row->id_user == $this->session->userdata('id')) echo 'selected';?>><?php echo $row->nama;?></option>
-                    <?php endforeach;?> --}}
+                    @foreach ($user as $data)
+                      <option value="{{$data->id_user}}" @if ($trans->id_user==$data->id_user) selected @endif>{{$data->nama}}</option>
+                    @endforeach
                   </select>
+                </div>
+                <div class="text-danger">
+                  @error('user')
+                  {{$message}}
+                  @enderror
                 </div>
               </div>
               <div class="line"> </div>
@@ -37,10 +42,17 @@
                 <div class="col-sm-9">
                   <select name="buku" class="form-control" required="">
                     <option>Pilih Buku</option>
-                    {{-- <?php foreach($buku as $row):?>
-                    <option value="<?php echo $row->id_buku;?>" <?php if ($row->id_buku == $this->input->post('id_buku')){echo "selected";}?>><?php echo $row->judul;?></option>
-                    <?php endforeach;?> --}}
+                    @foreach ($buku as $data)
+                      @if ($data->sedia)
+                        <option value="{{$data->id_buku}}" @if ($trans->id_buku==$data->id_buku) selected @endif>{{$data->judul}}</option>
+                      @endif
+                    @endforeach
                   </select>
+                </div>
+                <div class="text-danger">
+                  @error('buku')
+                  {{$message}}
+                  @enderror
                 </div>
               </div>
               <div class="line"> </div>

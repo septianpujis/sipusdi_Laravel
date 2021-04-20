@@ -20,11 +20,20 @@ class C_user extends Controller
     }
 
     public function tambah(){
-
         $data = [
-        'title' => 'Tambah User',
+            'title' => 'Tambah User',
+            'kelas' => $this->M_user->allKelas(),
         ];
         return view('user.v_tambah', $data);
+    }
+
+    public function sunting($id){
+        $data = [
+            'title' => 'Sunting User',
+            'user' => $this->M_user->detailData($id),
+            'kelas' => $this->M_user->allKelas(),
+        ];
+        return view('user.v_sunting', $data);
     }
 
     public function form_val($id = null){
@@ -92,13 +101,6 @@ class C_user extends Controller
         return redirect()->route('user')->with('pesan', $pesan);
     }
 
-    public function sunting($id){
-        $data = [
-            'title' => 'Sunting User',
-            'user' => $this->M_user->detailData($id)
-        ];
-        return view('user.v_sunting', $data);
-    }
 
     public function detail($id){
 

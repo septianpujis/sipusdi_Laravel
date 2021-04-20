@@ -13,12 +13,20 @@ class M_user extends Model
 
     public function allData()   
     {
-        return DB::table(self::table)->get();
+        return DB::table(self::table)
+               ->join('tb_kode_kelas', 'tb_user.id_kelas', '=' ,'tb_kode_kelas.id_kelas')
+               ->select('tb_user.*', 'tb_kode_kelas.nama_kelas')
+               ->get();
+        //return DB::table(self::table)->get();
     }
 
     public function detailData($id)
     {
-        return DB::table(self::table)->where(self::primary, $id)->first();
+        return DB::table(self::table)
+               ->join('tb_kode_kelas', 'tb_user.id_kelas', '=' ,'tb_kode_kelas.id_kelas')
+               ->select('tb_user.*', 'tb_kode_kelas.nama_kelas')
+               ->where(self::primary, $id)
+               ->first();
     }
 
     public function tambahData($data)
@@ -34,5 +42,10 @@ class M_user extends Model
     public function hapusData($id)
     {
         DB::table(self::table)->where(self::primary,$id)->delete();
+    }
+
+    public function allKelas()
+    {
+        return DB::table('tb_kode_kelas')->get();
     }
 }

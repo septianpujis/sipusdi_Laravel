@@ -38,9 +38,9 @@
 									<tr>
 										<td class="sorting_1"><a href="/trans/detail/{{$data->id_trans}}">{{$data->id_trans}}</a></td>
 										<td class=" ">{{$data->waktu_pinjam}}</td>
-                    <td class=" ">{{$data->id_user}}</td>
-                    <td class="center ">{{$data->id_buku}}</td>
-                    <td class="center ">{{$data->id_status}}</td>
+                    <td class=" "><a href="/user/detail/{{$data->id_user}}">{{$data->nama}}</a></td>
+                    <td class="center "><a href="/buku/detail/{{$data->id_buku}}">{{$data->judul}}</td>
+                    <td class="center ">{{$data->nama_status}}</td>
                     <td align="center">
 	                    <button type="button" data-toggle="modal" data-target="#detail-{{$data->id_trans}}" class="btn btn-primary">Detail</button>
 	                    <a href="/trans/sunting/{{$data->id_trans}}" class="btn btn-success">Sunting</a>
@@ -72,19 +72,15 @@
 				                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 				                    </div>
 				                    <div class="modal-body">
-				                      <div class="row">
-								                <div class="col-sm-7">
-								                  <strong>Id Transaksi : </strong><span>{{$data->id_trans}}</span><br><br>
-								                  <strong>Tanggal Pinjam : </strong><span>{{$data->waktu_pinjam}}</span><br><br>
-								                  <strong>Tanggal Ambil buku : </strong><span>{{$data->waktu_ambil}}</span><br><br>
-								                  <strong>Tanggal Kembali : </strong><span>{{$data->waktu_kembali}}</span><br><br>
-								                  <strong>Peminjam : </strong><span>{{$data->id_user}}</span><br><br>
-								                  <strong>Buku yang dipinjam : </strong><span>{{$data->id_buku}}</span><br><br>
-								                  <strong>Status Transaksi : </strong><span>{{$data->id_status}}</span><br><br>
-								                </div>
-						              		</div>
-				                    </div>
-				                  </div>
+						                  <strong>Id Transaksi : </strong><span>{{$data->id_trans}}</span><br><br>
+						                  <strong>Tanggal Pinjam : </strong><span>{{$data->waktu_pinjam}}</span><br><br>
+						                  <strong>Tanggal Ambil buku : </strong><span>{{$data->waktu_ambil}}</span><br><br>
+						                  <strong>Tanggal Kembali : </strong><span>{{$data->waktu_kembali}}</span><br><br>
+						                  <strong>Peminjam : </strong><span>{{$data->nama}}</span><br><br>
+						                  <strong>Buku yang dipinjam : </strong><span>{{$data->judul}}</span><br><br>
+						                  <strong>Status Transaksi : </strong><span>{{$data->nama_status}}</span><br><br>
+						                </div>
+						              </div>
 				                </div>
 				              </div>
 				            </td>

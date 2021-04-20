@@ -14,9 +14,13 @@
                 <div class="col-sm-7">
                   <strong>Nama :</strong><br><span>{{$user->nama}}</span><br>
                   <strong>Nomor Anggota :</strong><br><span>{{$user->nomor_induk}}</span><br>
-                  <strong>Status :</strong><br><span>{{$user->level}}</span><br>
+                  <strong>Status :</strong><br><span>@if ($user->level==1)
+                                                      Pegawai
+                                                    @else
+                                                      Pembaca
+                                                    @endif</span><br>
                   <strong>Email :</strong><br><span>{{$user->email}}</span><br>
-                  <strong>Kelas :</strong><br><span>{{$user->id_kelas}}</span><br>
+                  <strong>Kelas :</strong><br><span>{{$user->nama_kelas}}</span><br>
                   <strong>Nomor Telepon :</strong><br><span>{{$user->no_telp}}</span><br>
                 </div>
                 <div class="col-md-5">
