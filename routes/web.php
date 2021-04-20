@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\C_buku;
-use App\Http\Controllers\C_pengguna;
+use App\Http\Controllers\C_user;
 use App\Http\Controllers\C_transaksi;
 use Illuminate\Support\Facades\Route;
 
@@ -38,26 +38,22 @@ Route::post('/buku/form_val/{id?}', [C_buku::class, 'form_val']);
 
 Route::get('/buku/sunting/{id}', [C_buku::class, 'sunting']);
 
-
 Route::get('/buku/detail/{id}', [C_buku::class, 'detail']);
 
 Route::get('/buku/hapus/{id}', [C_buku::class, 'hapus']);
 
-Route::get('/pengguna', function () {
-    return view('pengguna.v_tampil');
-});
 
-Route::get('/pengguna/tambah', function () {
-    return view('pengguna.v_tambah');
-});
+Route::get('/user', [C_user::class, 'index'])->name('user');
 
-Route::get('/pengguna/sunting', function () {
-    return view('pengguna.v_sunting');
-});
+Route::get('/user/tambah', [C_user::class, 'tambah']);
 
-Route::get('/pengguna/detail', function () {
-    return view('pengguna.v_detail');
-});
+Route::post('/user/form_val/{id?}', [C_user::class, 'form_val']);
+
+Route::get('/user/sunting/{id}', [C_user::class, 'sunting']);
+
+Route::get('/user/detail/{id}', [C_user::class, 'detail']);
+
+Route::get('/user/hapus/{id}', [C_user::class, 'hapus']);
 
 
 Route::get('/transaksi', function () {

@@ -27,7 +27,7 @@ class C_buku extends Controller
         return view('buku.v_tambah', $data);
     }
 
-    public function form_val($id){
+    public function form_val($id = null){
         Request()->validate([
             'judul' => 'required|max:255',
             'penulis' => 'required|max:255',
@@ -49,48 +49,48 @@ class C_buku extends Controller
 
         if(Request()->sampul <> ''){
             $file = Request()->sampul;
-        $filename = mt_rand(10000, 99999) . '.' . $file->extension();
-        $file->move(public_path('images'), $filename);
+            $filename = mt_rand(10000, 99999) . '.' . $file->extension();
+            $file->move(public_path('images'), $filename);
 
-        $data = [
-            'judul' => Request()->judul,
-            'penulis' => Request()->penulis,
-            'penerbit' => Request()->penerbit,
-            'tahun' => Request()->tahun,
-            'halaman' => Request()->halaman,
-            'genre' => Request()->genre,
-            'sinopsis' => Request()->sinopsis,
-            'sampul' => $filename,
-        ];
+            $data = [
+                'judul' => Request()->judul,
+                'penulis' => Request()->penulis,
+                'penerbit' => Request()->penerbit,
+                'tahun' => Request()->tahun,
+                'halaman' => Request()->halaman,
+                'genre' => Request()->genre,
+                'sinopsis' => Request()->sinopsis,
+                'sampul' => $filename,
+            ];
 
-        if(isset($id)){
-            $this->M_buku->suntingData($id,$data);
-            $pesan = 'Data berhasil disunting';
-        }
-        else{
-            $this->M_buku->tambahData($data);
-            $pesan = 'Data berhasil ditambahkan';         
-        }
-    }else{
-        $data = [
-            'judul' => Request()->judul,
-            'penulis' => Request()->penulis,
-            'penerbit' => Request()->penerbit,
-            'tahun' => Request()->tahun,
-            'halaman' => Request()->halaman,
-            'genre' => Request()->genre,
-            'sinopsis' => Request()->sinopsis,
-        ];
+            if(isset($id)){
+                $this->M_buku->suntingData($id,$data);
+                $pesan = 'Data berhasil disunting';
+            }
+            else{
+                $this->M_buku->tambahData($data);
+                $pesan = 'Data berhasil ditambahkan';         
+            }
+        }else{
+            $data = [
+                'judul' => Request()->judul,
+                'penulis' => Request()->penulis,
+                'penerbit' => Request()->penerbit,
+                'tahun' => Request()->tahun,
+                'halaman' => Request()->halaman,
+                'genre' => Request()->genre,
+                'sinopsis' => Request()->sinopsis,
+            ];
 
-        if(isset($id)){
-            $this->M_buku->suntingData($id,$data);
-            $pesan = 'Data berhasil disunting';
+            if(isset($id)){
+                $this->M_buku->suntingData($id,$data);
+                $pesan = 'Data berhasil disunting';
+            }
+            else{
+                $this->M_buku->tambahData($data);
+                $pesan = 'Data berhasil ditambahkan';         
+            }
         }
-        else{
-            $this->M_buku->tambahData($data);
-            $pesan = 'Data berhasil ditambahkan';         
-        }
-    }
         return redirect()->route('buku')->with('pesan', $pesan);
     }
 

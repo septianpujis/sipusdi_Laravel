@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class M_buku extends Model
+class M_user extends Model
 {
-    const table = 'tb_book';
-    const primary = 'id_buku';
+	const table = 'tb_user';
+    const primary = 'id_user';
 
     public function allData()   
     {
