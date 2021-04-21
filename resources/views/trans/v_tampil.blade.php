@@ -41,10 +41,10 @@
                     <td class=" "><a href="/user/detail/{{$data->id_user}}">{{$data->nama}}</a></td>
                     <td class="center "><a href="/buku/detail/{{$data->id_buku}}">{{$data->judul}}</td>
                     <td class="center ">{{$data->nama_status}}</td>
-                    <td align="center">
-	                    <button type="button" data-toggle="modal" data-target="#detail-{{$data->id_trans}}" class="btn btn-primary">Detail</button>
-	                    <a href="/trans/sunting/{{$data->id_trans}}" class="btn btn-success">Sunting</a>
-	      							<button type="button" data-toggle="modal" data-target="#hapus-{{$data->id_trans}}" class="btn btn-danger">Hapus</button>
+                    <td align="center" width="15%">
+	                    <button type="button" data-toggle="modal" data-target="#detail-{{$data->id_trans}}" class="btn btn-primary"><i class="fa fa-info"></i></button>
+	                    <a href="/trans/sunting/{{$data->id_trans}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+	      							<button type="button" data-toggle="modal" data-target="#hapus-{{$data->id_trans}}" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 	      							<!-- Modal Hapus -->
 	      							<div id="hapus-{{$data->id_trans}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
 	      								<div role="document" class="modal-dialog">
@@ -77,7 +77,9 @@
 						                  <strong>Tanggal Ambil buku : </strong><span>{{$data->waktu_ambil}}</span><br><br>
 						                  <strong>Tanggal Kembali : </strong><span>{{$data->waktu_kembali}}</span><br><br>
 						                  <strong>Peminjam : </strong><span>{{$data->nama}}</span><br><br>
+						                  <strong>No. Telp : </strong><span>{{$data->no_telp}}</span><br><br>
 						                  <strong>Buku yang dipinjam : </strong><span>{{$data->judul}}</span><br><br>
+						                  <strong>Penulis buku : </strong><span>{{$data->penulis}}</span><br><br>
 						                  <strong>Status Transaksi : </strong><span>{{$data->nama_status}}</span><br><br>
 						                </div>
 						              </div>

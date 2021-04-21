@@ -7,7 +7,9 @@
     <!-- BOOTSTRAP STYLES-->
     <link href="{{asset('template')}}/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
-    <link href="{{asset('template')}}/assets/css/font-awesome.css" rel="stylesheet" />
+    {{-- <link href="{{asset('template')}}/assets/css/font-awesome.css" rel="stylesheet" /> --}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- CUSTOM STYLES-->
     <link href="{{asset('template')}}/assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->

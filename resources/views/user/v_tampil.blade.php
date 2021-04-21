@@ -36,7 +36,7 @@
 									@foreach ($user as $data)
 									<tr>
 										<td class="sorting_1">{{$data->nomor_induk}}</td>
-										<td class=" "><a href="/user/detail/{{$data->id_user}}">{{$data->nama}}</a></td>
+										<td width="30%"><a href="/user/detail/{{$data->id_user}}">{{$data->nama}}</a></td>
 										<td class=" ">
 											@if ($data->level==1)
 												Pegawai
@@ -46,10 +46,10 @@
 										</td>
 										<td class="center ">{{$data->email}}</td>
 										<td class="center ">{{$data->nama_kelas}}</td>
-										<td align="center">
-											<button type="button" data-toggle="modal" data-target="#detail-{{$data->id_user}}" class="btn btn-primary">Detail</button>
-											<a href="/user/sunting/{{$data->id_user}}" class="btn btn-success">Sunting</a>
-											<button type="button" data-toggle="modal" data-target="#hapus-{{$data->id_user}}" class="btn btn-danger">Hapus</button>
+										<td align="center" width="15%">
+											<button type="button" data-toggle="modal" data-target="#detail-{{$data->id_user}}" class="btn btn-primary"><i class="fa fa-info"></i></button>
+											<a href="/user/sunting/{{$data->id_user}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+											<button type="button" data-toggle="modal" data-target="#hapus-{{$data->id_user}}" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
 											<!-- Modal Hapus -->
 											<div id="hapus-{{$data->id_user}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">

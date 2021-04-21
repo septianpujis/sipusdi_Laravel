@@ -24,6 +24,18 @@ class C_trans extends Controller
     	return view('trans.v_tampil', $data);
     }
 
+    public function detail($id){
+
+        if (!$this->M_trans->detailData($id)) {
+            abort(404);
+        }
+        $data = [
+            'title' => 'Detail Data Transaksi',
+            'trans' => $this->M_trans->detailData($id),
+        ];
+        return view('trans.v_detail', $data);
+    }
+
     public function tambah(){
 
         $data = [
@@ -101,18 +113,6 @@ class C_trans extends Controller
         }
 
         return redirect()->route('trans')->with('pesan', $pesan);
-    }
-
-    public function detail($id){
-
-        if (!$this->M_trans->detailData($id)) {
-            abort(404);
-        }
-        $data = [
-            'title' => 'Detail Data Transaksi',
-            'trans' => $this->M_trans->detailData($id),
-        ];
-        return view('trans.v_detail', $data);
     }
 
     public function hapus($id){
