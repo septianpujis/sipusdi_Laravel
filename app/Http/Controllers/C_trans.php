@@ -20,6 +20,7 @@ class C_trans extends Controller
             'title' => 'Data Transaksi',
             'trans' => $this->M_trans->allData(),
     	];
+
     	return view('trans.v_tampil', $data);
     }
 
@@ -45,68 +46,60 @@ class C_trans extends Controller
 
     public function form_val($id = null){
         Request()->validate([
-            'judul' => 'required|max:255',
-            'penulis' => 'required|max:255',
-            'penerbit' => 'required|max:255',
-            'tahun' => 'required',
-            'halaman' => 'required',
-            'sampul' => 'mimes:jpg,jpeg,bmp,png|max:2048',
-
+            'waktu_pinjam' => 'required',
+            'user' => 'required',
+            'buku' => 'required',
         ],[
-            'judul.required' => 'Wajib diisi ::',
-            'judul.max' => 'Maksimal 255 karakter ::',
-            'penulis.required' => 'Wajib diisi ::',
-            'penerbit.required' => 'Wajib diisi ::',
-            'tahun.required' => 'Wajib diisi ::',
-            'halaman.required' => 'Wajib diisi ::',
-            'sampul.mimes' => 'Gambar harus berformat jpg, jpeg, bmp, atau png. ::',
-            'sampul.max' => 'Ukuran maksimal 2mb',
+            'required' => 'Wajib diisi'
         ]);
 
-        if(Request()->sampul <> ''){
-            $file = Request()->sampul;
-            $filename = mt_rand(10000, 99999) . '.' . $file->extension();
-            $file->move(public_path('images'), $filename);
+        $detail = $this->M_trans->detailData($id);
 
-            $data = [
-                'judul' => Request()->judul,
-                'penulis' => Request()->penulis,
-                'penerbit' => Request()->penerbit,
-                'tahun' => Request()->tahun,
-                'halaman' => Request()->halaman,
-                'genre' => Request()->genre,
-                'sinopsis' => Request()->sinopsis,
-                'sampul' => $filename,
-            ];
-
-            if(isset($id)){
-                $this->M_trans->suntingData($id,$data);
-                $pesan = 'Data berhasil disunting';
+        if(isset(Request()->ganstat)){
+            if(Request()->ganstat==1){
+                //kalo tombol "konfirmasi pengambilan buku" diklik, status belum diambil berubah jadi belum dikembalikan
+                $data = [
+                    'waktu_pinjam' => Request()->waktu_pinjam,
+                    'id_user' => Request()->user,
+                    'id_buku' => Request()->buku,
+                    'id_status' => 1,
+                    'waktu_ambil' => date("Y-m-d"),
+                ];
             }
-            else{
-                $this->M_trans->tambahData($data);
-                $pesan = 'Data berhasil ditambahkan';         
+            else if(Request()->ganstat==2){
+                //kalo tombol "konfirmasi pengembalian buku" diklik, status belum dikembalikan berubah jadi sudah dikembalikan, tapi ada kondisinya. Kalo tombol diklik setelah 7 hari dari status "belum dikembalikan", statusnya jadi "sudah dikembalikan, terlambat", dan kalo sebelum 7 hari maka "sudah dikembalikan"
+                if (date("Y-m-d", strtotime("-7 days")) > $detail->waktu_ambil){
+                    $status = 3;
+                }else{
+                    $status = 2;
+                }
+                
+                $data = [
+                    'waktu_pinjam' => Request()->waktu_pinjam,
+                    'id_user' => Request()->user,
+                    'id_buku' => Request()->buku,
+                    'waktu_kembali' => date("Y-m-d"),
+                    'id_status' => $status,
+                ];
             }
+           
         }else{
             $data = [
-                'judul' => Request()->judul,
-                'penulis' => Request()->penulis,
-                'penerbit' => Request()->penerbit,
-                'tahun' => Request()->tahun,
-                'halaman' => Request()->halaman,
-                'genre' => Request()->genre,
-                'sinopsis' => Request()->sinopsis,
+                'waktu_pinjam' => Request()->waktu_pinjam,
+                'id_user' => Request()->user,
+                'id_buku' => Request()->buku,
             ];
-
-            if(isset($id)){
-                $this->M_trans->suntingData($id,$data);
-                $pesan = 'Data berhasil disunting';
-            }
-            else{
-                $this->M_trans->tambahData($data);
-                $pesan = 'Data berhasil ditambahkan';         
-            }
         }
+
+        if(isset($id)){
+            $this->M_trans->suntingData($id,$data);
+            $pesan = 'Data berhasil disunting';
+        }
+        else{
+            $this->M_trans->tambahData($data);
+            $pesan = 'Data berhasil ditambahkan';         
+        }
+
         return redirect()->route('trans')->with('pesan', $pesan);
     }
 

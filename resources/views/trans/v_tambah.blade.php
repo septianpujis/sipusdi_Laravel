@@ -9,7 +9,7 @@
 				<h5>Masukkan data dengan teliti.</h5>
 				<hr />
 
-        <form method="post" action="/trans/tambah">
+        <form method="post" action="/trans/form_val">
         	@csrf
           <div class="row">
             <div class="col-sm-8">

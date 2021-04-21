@@ -37,13 +37,9 @@ class C_buku extends Controller
             'sampul' => 'mimes:jpg,jpeg,bmp,png|max:2048',
 
         ],[
-            'judul.required' => 'Wajib diisi ::',
-            'judul.max' => 'Maksimal 255 karakter ::',
-            'penulis.required' => 'Wajib diisi ::',
-            'penerbit.required' => 'Wajib diisi ::',
-            'tahun.required' => 'Wajib diisi ::',
-            'halaman.required' => 'Wajib diisi ::',
-            'sampul.mimes' => 'Gambar harus berformat jpg, jpeg, bmp, atau png. ::',
+            'required' => 'Wajib diisi',
+            'max' => 'Maksimal 255 karakter',
+            'sampul.mimes' => 'Gambar harus berformat jpg, jpeg, bmp, atau png.',
             'sampul.max' => 'Ukuran maksimal 2mb',
         ]);
 
