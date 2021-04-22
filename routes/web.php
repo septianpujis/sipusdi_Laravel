@@ -4,7 +4,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\C_buku;
 use App\Http\Controllers\C_user;
 use App\Http\Controllers\C_trans;
+use App\Http\Controllers\C_login;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +23,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('v_home');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about/{id}', [HomeController::class, 'about']);
+Route::get('/about/{id}', [HomeController::class, 'about'])->middleware('auth');
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
+if(session()->has('email')){
 
+}
 Route::get('/buku', [C_buku::class, 'index'])->name('buku');
 
 Route::get('/buku/tambah', [C_buku::class, 'tambah']);
@@ -62,8 +66,17 @@ Route::get('/trans/tambah', [C_trans::class, 'tambah']);
 
 Route::post('/trans/form_val/{id?}', [C_trans::class, 'form_val']);
 
-Route::get('/trans/sunting/{id}', [C_trans::class, 'sunting']);
+if (session()->get('level') == 1) {
+	Route::get('/trans/sunting/{id}', [C_trans::class, 'sunting']);
 
-Route::get('/trans/detail/{id}', [C_trans::class, 'detail']);
+	Route::get('/trans/detail/{id}', [C_trans::class, 'detail']);
 
-Route::get('/trans/hapus/{id}', [C_trans::class, 'hapus']);
+	Route::get('/trans/hapus/{id}', [C_trans::class, 'hapus']);
+}
+
+
+Route::get('/login', [C_login::class, 'index'])->name('login');
+
+Route::post('/authenticate', [C_login::class, 'authenticate']);
+
+Route::get('/logout', [C_login::class, 'logout'])->name('logout');

@@ -48,4 +48,12 @@ class M_user extends Model
     {
         return DB::table('tb_kode_kelas')->get();
     }
+
+    public function loginData($email,$password)
+    {
+        return DB::table(self::table)
+               ->where('email', $email)
+               ->where('password',$password)
+               ->first();
+    }
 }

@@ -8,12 +8,11 @@
     <link href="{{asset('template')}}/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     {{-- <link href="{{asset('template')}}/assets/css/font-awesome.css" rel="stylesheet" /> --}}
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- CUSTOM STYLES-->
+    <!-- CUSTOM STYLES-->
     <link href="{{asset('template')}}/assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- GOOGLE FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet" type='text/css' />
 </head>
 <body>
     <div id="wrapper">
