@@ -16,6 +16,10 @@ class C_trans extends Controller
     }
 
     public function index(){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
     	$data = [
             'title' => 'Data Transaksi',
             'trans' => $this->M_trans->allData(),
@@ -25,6 +29,9 @@ class C_trans extends Controller
     }
 
     public function detail($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
 
         if (!$this->M_trans->detailData($id)) {
             abort(404);
@@ -37,6 +44,9 @@ class C_trans extends Controller
     }
 
     public function tambah(){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
 
         $data = [
             'title' => 'Tambah Data Transaksi',
@@ -47,6 +57,14 @@ class C_trans extends Controller
     }
 
     public function sunting($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
+        if(session()->get('level')==2){
+            return back();
+        }
+
         $data = [
             'title' => 'Sunting Data Transaksi',
             'trans' => $this->M_trans->detailData($id),
@@ -57,6 +75,14 @@ class C_trans extends Controller
     }
 
     public function form_val($id = null){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
+        if(session()->get('level')==2){
+            return back();
+        }
+
         Request()->validate([
             'waktu_pinjam' => 'required',
             'user' => 'required',
@@ -116,7 +142,14 @@ class C_trans extends Controller
     }
 
     public function hapus($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
     	
+        if(session()->get('level')==2){
+            return back();
+        }
+
         $this->M_trans->hapusData($id);
         $pesan = 'Data berhasil dihapus';
         return redirect()->route('trans')->with('pesan', $pesan);

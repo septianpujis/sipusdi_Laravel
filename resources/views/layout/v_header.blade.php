@@ -12,6 +12,6 @@
     padding: 15px 50px 5px 50px;
     float: right;
     font-size: 16px;">
-        Last access : 30 May 2014 &nbsp; <a href="/logout" class="btn btn-danger square-btn-adjust">Logout</a> 
+        <a href="/user/detail/{{session('id')}}">{{session('nama')}}&nbsp;<i class="fa fa-user-o"></i></a> &nbsp; <a href="/logout" class="btn btn-danger square-btn-adjust">Logout</a> 
     </div>
 </nav>   

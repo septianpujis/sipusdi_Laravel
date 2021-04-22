@@ -12,6 +12,10 @@ class C_buku extends Controller
     }
 
     public function index(){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
     	$data = [
             'title' => 'Buku',
             'buku' => $this->M_buku->allData(),
@@ -20,6 +24,13 @@ class C_buku extends Controller
     }
 
     public function tambah(){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
+        if(session()->get('level')==2){
+            return back();
+        }
 
         $data = [
         'title' => 'Tambah Buku',
@@ -28,6 +39,14 @@ class C_buku extends Controller
     }
 
     public function form_val($id = null){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
+        if(session()->get('level')==2){
+            return back();
+        }
+
         Request()->validate([
             'judul' => 'required|max:255',
             'penulis' => 'required|max:255',
@@ -91,6 +110,14 @@ class C_buku extends Controller
     }
 
     public function sunting($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
+        if(session()->get('level')==2){
+            return back();
+        }
+
         $data = [
             'title' => 'Sunting Buku',
             'buku' => $this->M_buku->detailData($id)
@@ -99,6 +126,9 @@ class C_buku extends Controller
     }
 
     public function detail($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
 
         if (!$this->M_buku->detailData($id)) {
             abort(404);
@@ -111,6 +141,13 @@ class C_buku extends Controller
     }
 
     public function hapus($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
+        if(session()->get('level')==2){
+            return back();
+        }
 
         $data =  $this->M_buku->detailData($id);
         if ($data->sampul <> ''){

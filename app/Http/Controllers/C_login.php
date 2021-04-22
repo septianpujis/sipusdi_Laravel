@@ -32,7 +32,7 @@ class C_login extends Controller
             Request()->session()->put('nomor', $dataLogin->nomor_induk);
             Request()->session()->put('level', $dataLogin->level);
 
-            return redirect()->route('buku')->with('pesan', 'Selamat Datang');
+            return redirect()->route('home')->with('pesan', 'Selamat Datang');
         }
 
         return back()->with('pesan', 'Gagal Masuk, periksa email dan password');

@@ -12,6 +12,10 @@ class C_user extends Controller
     }
 
     public function index(){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
     	$data = [
             'title' => 'User',
             'user' => $this->M_user->allData(),
@@ -20,6 +24,14 @@ class C_user extends Controller
     }
 
     public function tambah(){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
+        if(session()->get('level')==2){
+            return back();
+        }
+
         $data = [
             'title' => 'Tambah User',
             'kelas' => $this->M_user->allKelas(),
@@ -28,6 +40,18 @@ class C_user extends Controller
     }
 
     public function sunting($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
+        if(!(session()->get('id')==$id)){
+            return back();
+        }
+        
+        if (!$this->M_user->detailData($id)) {
+            abort(404);
+        }
+
         $data = [
             'title' => 'Sunting User',
             'user' => $this->M_user->detailData($id),
@@ -37,6 +61,14 @@ class C_user extends Controller
     }
 
     public function form_val($id = null){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
+        if(session()->get('level')==2){
+            return back();
+        }
+
         Request()->validate([
             'nomor' => 'required|max:255',
             'nama' => 'required|max:255',
@@ -103,10 +135,15 @@ class C_user extends Controller
 
 
     public function detail($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
 
         if (!$this->M_user->detailData($id)) {
             abort(404);
         }
+
         $data = [
             'title' => 'Detail User',
             'user' => $this->M_user->detailData($id),
@@ -115,6 +152,13 @@ class C_user extends Controller
     }
 
     public function hapus($id){
+        if (!session()->get('email')){
+            return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+        
+        if(session()->get('level')==2){
+            return back();
+        }
 
         $data =  $this->M_user->detailData($id);
         if ($data->foto <> ''){

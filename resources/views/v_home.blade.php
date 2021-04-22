@@ -6,9 +6,9 @@
 	<div id="page-inner">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Blank Page</h2>
-				<h5>Welcome Jhon Deo , Love to see you back. </h5>
-				{{$nama}}
+				<h2>Home</h2>
+				<h5>Welcome {{session('nama')}}, Love to see you back. </h5>
+				
 			</div>
 		</div><hr />
 	</div>

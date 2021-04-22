@@ -31,9 +31,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-if(session()->has('email')){
 
-}
 Route::get('/buku', [C_buku::class, 'index'])->name('buku');
 
 Route::get('/buku/tambah', [C_buku::class, 'tambah']);
@@ -66,13 +64,11 @@ Route::get('/trans/tambah', [C_trans::class, 'tambah']);
 
 Route::post('/trans/form_val/{id?}', [C_trans::class, 'form_val']);
 
-if (session()->get('level') == 1) {
-	Route::get('/trans/sunting/{id}', [C_trans::class, 'sunting']);
+Route::get('/trans/sunting/{id}', [C_trans::class, 'sunting']);
 
-	Route::get('/trans/detail/{id}', [C_trans::class, 'detail']);
+Route::get('/trans/detail/{id}', [C_trans::class, 'detail']);
 
-	Route::get('/trans/hapus/{id}', [C_trans::class, 'hapus']);
-}
+Route::get('/trans/hapus/{id}', [C_trans::class, 'hapus']);
 
 
 Route::get('/login', [C_login::class, 'index'])->name('login');
