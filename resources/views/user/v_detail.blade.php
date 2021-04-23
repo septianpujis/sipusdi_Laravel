@@ -31,6 +31,31 @@
               </div>
 			</div>
 		</div><hr />
+     <div class="table-responsive">
+        <h5>Tabel Riwayat Transaksi Peminjaman "{{$user->nama}}"</h5>
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Waktu Pinjam</th>
+              <th>Peminjam</th>
+              <th>Buku</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($trans as $data)
+            <tr>
+              <td class="sorting_1"><a href="/trans/detail/{{$data->id_trans}}">{{$data->id_trans}}</a></td>
+              <td class=" ">{{$data->waktu_pinjam}}</td>
+              <td class=" "><a href="/user/detail/{{$data->id_user}}">{{$data->nama}}</a></td>
+              <td class="center "><a href="/buku/detail/{{$data->id_buku}}">{{$data->judul}}</td>
+              <td class="center ">{{$data->nama_status}}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
 	</div>
 </div>
 @endsection

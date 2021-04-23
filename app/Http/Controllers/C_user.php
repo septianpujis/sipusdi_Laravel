@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\M_user;
+use App\Models\M_trans;
 
 class C_user extends Controller
 {
     public function __construct(){
         $this->M_user = new M_user();
+        $this->M_trans = new M_trans();
     }
 
     public function index(){
         if (!session()->get('email')){
             return redirect()->route('login')->with('pesan', 'kamu belum login');
+        }
+
+        if (session()->get('level')==2){
+            return redirect('/user/detail/'.session()->get('id'));
         }
         
     	$data = [
@@ -147,6 +153,7 @@ class C_user extends Controller
         $data = [
             'title' => 'Detail User',
             'user' => $this->M_user->detailData($id),
+            'trans' => $this->M_trans->perUserData($id),
         ];
         return view('user.v_detail', $data);
     }

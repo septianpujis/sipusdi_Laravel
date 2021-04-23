@@ -23,14 +23,14 @@
               <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Peminjam</label>
                 <div class="col-sm-9">
-                  <select name="user" class="form-control" @if(session('level')==2) disabled @endif>
+                  <select name="user" class="form-control">
                     @if(session('level')==1)
                       <option value="">Pilih Data Pengguna</option>
                       @foreach ($user as $data)
                       	<option value="{{$data->id_user}}" >{{$data->nama}}</option>
                       @endforeach
                     @else
-                      <option value="{{session('id')}}">{{session('nama')}}</option>
+                      <option value="{{session('id')}}" selected>{{session('nama')}}</option>
                     @endif
                   </select>
                 </div>
@@ -59,21 +59,22 @@
                 	@enderror
                 </div>
               </div>
-              <div class="line"> </div>
+
+              <div class="form-group row">
+                <div class="col-sm-3 offset-sm-2"></div>
+                <div class="col-sm-9 offset-sm-2">
+                  <a href="/trans" class="btn btn-warning">Batal</a>
+                  <button type="reset" class="btn btn-primary">Reset</button>
+                  <input type="submit" class="btn btn-success" value="Tambah Data">
+                </div>
+              </div>
             </div>
             <div class="line"> </div>
             <div class="col-sm-4">
               <div>Waktu Peminjaman Terhitung 7 (Tujuh) Hari sejak buku diambil (Status 'belum diambil' berubah menjadi 'belum dikembalikan'</div>
             </div>
           </div>
-          <div class="line"></div>
-          <div class="form-group row">
-            <div class="col-sm-4 offset-sm-2">
-              <a href="/trans" class="btn btn-secondary">Batal</a>
-              <button type="reset" class="btn btn-secondary">Reset</button>
-              <input type="submit" class="btn btn-primary" value="Tambah Data">
-            </div>
-          </div>
+          
         </form>
 			</div>
 		</div><hr />

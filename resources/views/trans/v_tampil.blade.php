@@ -30,7 +30,9 @@
 										<th>Peminjam</th>
 										<th>Buku</th>
 										<th>Status</th>
+										@if (session('level')==1)
 										<th>Aksi</th>
+										@endif
 									</tr>
 								</thead>
 								<tbody>
@@ -41,10 +43,13 @@
                     <td class=" "><a href="/user/detail/{{$data->id_user}}">{{$data->nama}}</a></td>
                     <td class="center "><a href="/buku/detail/{{$data->id_buku}}">{{$data->judul}}</td>
                     <td class="center ">{{$data->nama_status}}</td>
+                    @if (session('level')==1)
                     <td align="center" width="15%">
 	                    <button type="button" data-toggle="modal" data-target="#detail-{{$data->id_trans}}" class="btn btn-primary"><i class="fa fa-info"></i></button>
+	                    
 	                    <a href="/trans/sunting/{{$data->id_trans}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
 	      							<button type="button" data-toggle="modal" data-target="#hapus-{{$data->id_trans}}" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+	      							
 	      							<!-- Modal Hapus -->
 	      							<div id="hapus-{{$data->id_trans}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
 	      								<div role="document" class="modal-dialog">
@@ -63,6 +68,7 @@
 		                  		</div>
 		                		</div>
 		              		</div>
+
 		              		<!-- Modal lihat -->
 				              <div id="detail-{{$data->id_trans}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
 				                <div role="document" class="modal-dialog modal-lg">
@@ -86,6 +92,7 @@
 				                </div>
 				              </div>
 				            </td>
+				            @endif
 				          </tr>
 				          @endforeach
 				        </tbody>

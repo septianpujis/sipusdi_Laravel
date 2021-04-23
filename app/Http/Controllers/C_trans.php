@@ -77,11 +77,7 @@ class C_trans extends Controller
     public function form_val($id = null){
         if (!session()->get('email')){
             return redirect()->route('login')->with('pesan', 'kamu belum login');
-        }
-        
-        if(session()->get('level')==2){
-            return back();
-        }
+        } 
 
         Request()->validate([
             'waktu_pinjam' => 'required',
@@ -103,6 +99,7 @@ class C_trans extends Controller
                     'id_status' => 1,
                     'waktu_ambil' => date("Y-m-d"),
                 ];
+                $buku_sedia = ['sedia'=> 2];
             }
             else if(Request()->ganstat==2){
                 //kalo tombol "konfirmasi pengembalian buku" diklik, status belum dikembalikan berubah jadi sudah dikembalikan, tapi ada kondisinya. Kalo tombol diklik setelah 7 hari dari status "belum dikembalikan", statusnya jadi "sudah dikembalikan, terlambat", dan kalo sebelum 7 hari maka "sudah dikembalikan"
@@ -119,6 +116,7 @@ class C_trans extends Controller
                     'waktu_kembali' => date("Y-m-d"),
                     'id_status' => $status,
                 ];
+                $buku_sedia = ['sedia'=> 1];
             }
            
         }else{
@@ -127,14 +125,17 @@ class C_trans extends Controller
                 'id_user' => Request()->user,
                 'id_buku' => Request()->buku,
             ];
+            $buku_sedia = ['sedia'=> 1];
         }
 
         if(isset($id)){
             $this->M_trans->suntingData($id,$data);
+            $this->M_buku->suntingData(Request()->buku,$buku_sedia);
             $pesan = 'Data berhasil disunting';
         }
         else{
             $this->M_trans->tambahData($data);
+            $this->M_buku->suntingData(Request()->buku,$buku_sedia);
             $pesan = 'Data berhasil ditambahkan';         
         }
 
