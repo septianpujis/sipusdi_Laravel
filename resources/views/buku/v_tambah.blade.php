@@ -100,10 +100,22 @@
 		                  </div>
 		                </div>
 		              </div>
-		              <div class="line"> </div>
+				          <div class="form-group row ">
+				            <div class="col-sm-3"></div>
+				            <div class="col-sm-9">
+				              <a href="/buku" class="btn btn-primary">Batal</a>
+				              <button type="reset" class="btn btn-warning">Reset</button>
+				              <button class="btn btn-success">Simpan</button>
+				            </div>
+				          </div>
 		            </div>
-		            <div class="line"> </div>
 		            <div class="col-sm-4">
+		            	<label class="form-control-label">Status Sedia</label>
+		            	<select name="sedia" class="form-control" disabled>
+                    	<option value="1" checked>Tersedia</option>
+                    	<option value="2">Tidak Tersedia</option>
+                  </select>
+		            	<hr />
 		              <div class="image has-shadow">
 		              	<img class="img-fluid" src="#" alt="Foto Sampul Buku" width="300" height="360"></div>
 		              <br/>
@@ -113,15 +125,6 @@
 		                  	{{$message}}
 		                  	@enderror
 		                  </div>
-		            </div>
-		          </div>
-		          <div class="line"></div>
-		          <div class="form-group row ">
-		            <div class="col-sm-3 offset-sm-2"></div>
-		            <div class="com-sm-9 offset-sm-2">
-		              <a href="/buku" class="btn btn-primary">Batal</a>
-		              <button type="reset" class="btn btn-warning">Reset</button>
-		              <button class="btn btn-success">Simpan</button>
 		            </div>
 		          </div>
 		        </form>

@@ -40,7 +40,7 @@ class C_login extends Controller
 
     public function index()
     {
-        if (Request()->session()->has('email')) {
+        if (session()->has('email')) {
             return back()->with('pesan', 'Anda sudah Login');
         }else{
             return view('v_login');            

@@ -111,6 +111,12 @@
 		            </div>
 		            <div class="line"> </div>
 		            <div class="col-sm-4">
+		            	<label class="form-control-label">Status Sedia</label>
+		            	<select name="sedia" class="form-control">
+                    	<option value="1" @if ($buku->sedia == 1) checked @endif>Tersedia</option>
+                    	<option value="2" @if ($buku->sedia == 2) checked @endif>Tidak Tersedia</option>
+                  </select>
+		            	<hr />
 		              <div class="image has-shadow">
 		              	<img class="img-fluid" src="{{url('images/'.$buku->sampul)}}" alt="Foto Sampul Buku" width="300" height="360"></div>
 		              <br/>

@@ -17,9 +17,12 @@
 				@endif
 
 				<div class="panel panel-default">
+					
+					@if (session('level')==1)
 					<div class="panel-heading">
 						<a href="/buku/tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
 					</div>
+					@endif
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover">
@@ -40,15 +43,13 @@
 										<td width="35%"><a href="/buku/detail/{{$data->id_buku}}">{{$data->judul}}</a></td>
 										<td width="20%">{{$data->penulis}}</td>
 										<td class="center ">{{$data->tahun}}</td>
-										<td width="14%">@if ($data->sedia==1)
-											Sedia
-											@else
-											Tidak Tersedia
-										@endif</td>
+										<td width="14%">@if ($data->sedia==1) Sedia @else Tidak Tersedia @endif</td>
 										<td align="center" width="15%">
 											<button type="button" data-toggle="modal" data-target="#detail-{{$data->id_buku}}" class="btn btn-primary"><i class="fa fa-info"></i></button>
+											@if (session('level')==1)
 											<a href="/buku/sunting/{{$data->id_buku}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
 											<button type="button" data-toggle="modal" data-target="#hapus-{{$data->id_buku}}" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+											@endif
 
 											<!-- Modal Hapus -->
 			                <div id="hapus-{{$data->id_buku}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
@@ -70,7 +71,7 @@
 			                </div>
 
 				              <!-- Modal lihat -->
-				              <div id="detail-{{$data->id_buku}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal fade text-left" style="display: none;" aria-hidden="true">
+				              <div id="detail-{{$data->id_buku}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" class="modal text-left" style="display: none;" aria-hidden="true">
 				                <div role="document" class="modal-dialog modal-lg">
 				                  <div class="modal-content">
 				                    <div class="modal-header">
@@ -88,12 +89,18 @@
 								                  <strong>Sinopsis :</strong><br><span>{{$data->sinopsis}}</span><br>
 								                </div>
 						                		<div class="col-md-5">
+						                			<strong>Status Sedia :</strong><br><span>@if ($data->sedia==1) Sedia @else Tidak Tersedia @endif</span><br>
 						                  		<p align="center">
 						                  			<img src="{{url('images/'.$data->sampul)}}" alt="Gambar Cover tidak ditemukan" width="260" height="360">
 						                  		</p>
 						                  	</div>
 						                  </div>
 						                </div>
+						                @if ($data->sedia==1)
+						                <div class="modal-footer">
+						                	<a type="button" class="btn btn-primary" href="/trans/tambah?buku={{$data->id_buku}}">Pinjam BUku</a>
+						                </div>
+						                @endif
 						              </div>
 				                </div>
 				              </div>

@@ -23,11 +23,15 @@
               <div class="form-group row">
                 <label class="col-sm-3 form-control-label">Peminjam</label>
                 <div class="col-sm-9">
-                  <select name="user" class="form-control">
-                    <option>Pilih Data Pengguna</option>
-                    @foreach ($user as $data)
-                    	<option value="{{$data->id_user}}">{{$data->nama}}</option>
-                    @endforeach
+                  <select name="user" class="form-control" @if(session('level')==2) disabled @endif>
+                    @if(session('level')==1)
+                      <option value="">Pilih Data Pengguna</option>
+                      @foreach ($user as $data)
+                      	<option value="{{$data->id_user}}" >{{$data->nama}}</option>
+                      @endforeach
+                    @else
+                      <option value="{{session('id')}}">{{session('nama')}}</option>
+                    @endif
                   </select>
                 </div>
                 <div class="text-danger">
@@ -41,10 +45,10 @@
                 <label class="col-sm-3 form-control-label">Judul Buku Yang Dipinjam</label>
                 <div class="col-sm-9">
                   <select name="buku" class="form-control" required="">
-                    <option>Pilih Buku</option>
+                    <option value="">Pilih Buku</option>
                     @foreach ($buku as $data)
                     	@if ($data->sedia)
-                    		<option value="{{$data->id_buku}}">{{$data->judul}}</option>
+                    		<option value="{{$data->id_buku}}" @if (isset($_GET['buku'])) @if ($_GET['buku'] == $data->id_buku)) selected @endif @endif>{{$data->judul}}</option>
                     	@endif
                     @endforeach
                   </select>

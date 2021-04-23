@@ -75,6 +75,7 @@ class C_buku extends Controller
                 'halaman' => Request()->halaman,
                 'genre' => Request()->genre,
                 'sinopsis' => Request()->sinopsis,
+                'sedia' => Request()->sedia,
                 'sampul' => $filename,
             ];
 
@@ -95,6 +96,7 @@ class C_buku extends Controller
                 'halaman' => Request()->halaman,
                 'genre' => Request()->genre,
                 'sinopsis' => Request()->sinopsis,
+                'sedia' => Request()->sedia,
             ];
 
             if(isset($id)){
