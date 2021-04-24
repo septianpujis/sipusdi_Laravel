@@ -1,6 +1,6 @@
 # SiPusDi - Sistem Perpustakaan Digital
 
-<img src="https://drive.google.com/file/d/1lYPW7wW2ZIKQ_ICb5DB_4PZ7Kd7-yFy4/view?usp=sharing">
+<img src="https://i.imgur.com/zrsGOHF.gif">
 
 Latihan Pemrograman pembuatan Website Sistem Perpustakaan dengan Framework Laravel 8 (PHP)
 
@@ -21,7 +21,7 @@ Diagram Database, Diagram Usecase, dan Aturan dasar terlampir pada dokumen berik
 
 # SiPusDi - Digital Library Website
 
-Programming practice -- make website with Django 2.2 Framework (Python)
+Programming practice -- make website with Laravel 8 Framework (Python)
 
 Digital Library Website have feature:<br><ul>
   <li>Login System</li>
