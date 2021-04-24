@@ -21,7 +21,7 @@ Diagram Database, Diagram Usecase, dan Aturan dasar terlampir pada dokumen berik
 
 # SiPusDi - Digital Library Website
 
-Programming practice -- make website with Django 2.2 Framework (Python)
+Programming practice -- make website with Laravel 8 Framework (Python)
 
 Digital Library Website have feature:<br><ul>
   <li>Login System</li>
