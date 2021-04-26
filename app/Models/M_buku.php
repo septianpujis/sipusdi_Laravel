@@ -35,4 +35,13 @@ class M_buku extends Model
     {
         DB::table(self::table)->where(self::primary,$id)->delete();
     }
+
+    public function searchData($q)
+    {
+        return DB::table(self::table)
+               ->where('judul', 'like','%'. $q.'%')
+               ->orWhere('penulis','like','%'.$q.'%')
+               ->orWhere('penerbit','like','%'. $q.'%')
+               ->get();
+    }
 }

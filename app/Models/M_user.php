@@ -17,7 +17,6 @@ class M_user extends Model
                ->join('tb_kode_kelas', 'tb_user.id_kelas', '=' ,'tb_kode_kelas.id_kelas')
                ->select('tb_user.*', 'tb_kode_kelas.nama_kelas')
                ->get();
-        //return DB::table(self::table)->get();
     }
 
     public function detailData($id)
@@ -55,5 +54,14 @@ class M_user extends Model
                ->where('email', $email)
                ->where('password',$password)
                ->first();
+    }
+
+    public function searchData($q)
+    {
+        return DB::table(self::table)
+               ->join('tb_kode_kelas', 'tb_user.id_kelas', '=' ,'tb_kode_kelas.id_kelas')
+               ->select('tb_user.*', 'tb_kode_kelas.nama_kelas')
+               ->where('nama', 'like','%'. $q.'%')
+               ->get();
     }
 }

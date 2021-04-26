@@ -17,12 +17,21 @@
 				@endif
 
 				<div class="panel panel-default">
-					
-					@if (session('level')==1)
 					<div class="panel-heading">
-						<a href="/buku/tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
-					</div>
+						<form action="/buku" method="GET">
+							@csrf
+							<div class="form-group input-group">
+                <input type="text" class="form-control" placeholder="Judul, Penulis, Penerbit" name="search">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Cari Buku
+                    </button>
+                </span>
+            	</div>
+						</form>
+					@if (session('level')==1)
+						<a href="/buku/tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>				
 					@endif
+					</div>
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table table-striped table-bordered table-hover">

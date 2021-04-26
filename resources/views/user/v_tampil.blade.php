@@ -17,7 +17,18 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/user/tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
+						<form action="/user" method="GET">
+							@csrf
+							<div class="form-group input-group">
+                <input type="text" class="form-control" placeholder="Nama Pengguna" name="search">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Cari Pengguna</button>
+                </span>
+            	</div>
+						</form>
+					@if (session('level')==1)
+						<a href="/user/tambah" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>				
+					@endif
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">

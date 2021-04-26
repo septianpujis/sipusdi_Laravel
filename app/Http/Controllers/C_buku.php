@@ -16,9 +16,16 @@ class C_buku extends Controller
             return redirect()->route('login')->with('pesan', 'kamu belum login');
         }
 
+        if (isset($_GET['search'])){
+            $data_buku = $this->M_buku->searchData($_GET['search']);
+        }
+        else{
+            $data_buku = $this->M_buku->allData();
+        }
+
     	$data = [
             'title' => 'Buku',
-            'buku' => $this->M_buku->allData(),
+            'buku' => $data_buku,
     	];
     	return view('buku.v_tampil', $data);
     }

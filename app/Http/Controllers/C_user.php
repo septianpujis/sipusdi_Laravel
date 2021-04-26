@@ -22,9 +22,17 @@ class C_user extends Controller
             return redirect('/user/detail/'.session()->get('id'));
         }
         
+        if (isset($_GET['search'])){
+            $user = $this->M_user->searchData($_GET['search']);
+        }
+        else{
+            $user = $this->M_user->allData();
+        }
+
+
     	$data = [
             'title' => 'User',
-            'user' => $this->M_user->allData(),
+            'user' => $user,
     	];
     	return view('user.v_tampil', $data);
     }
